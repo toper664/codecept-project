@@ -11,9 +11,14 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'http://localhost',
+      url: 'https://open.spotify.com/',
       show: true,
-      windowSize: '1200x900'
+      restart: false,
+      waitForAction: 500,
+      windowSize: '1200x900',
+      chrome: {
+        args: [ '--no-sandbox', '--window-size=1200,900' ]
+      }
     }
   },
   include: {

@@ -4,5 +4,9 @@
     "codeceptjs": "^3.6.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "puppeteer": "^22.11.2"
   }
 }
