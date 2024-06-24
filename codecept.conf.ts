@@ -19,7 +19,8 @@ export const config: CodeceptJS.MainConfig = {
       chrome: {
         args: [ '--no-sandbox', '--window-size=1200,900' ]
       }
-    }
+    },
+    FileSystem: {},
   },
   include: {
     I: './steps_file'
