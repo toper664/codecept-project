@@ -15,6 +15,7 @@ export const config: CodeceptJS.MainConfig = {
       show: true,
       restart: false,
       waitForAction: 500,
+      waitForNavigation: "networkidle0",
       windowSize: '1200x900',
       chrome: {
         args: [ '--no-sandbox', '--window-size=1200,900' ]
