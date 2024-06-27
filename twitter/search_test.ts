@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
 
 dotenv.config();
-const uname = process.env.TWITTER_FRIEND_USERNAME;
+const fname = process.env.TWITTER_FRIEND_USERNAME;
+const uname = process.env.TWITTER_USERNAME;
 const email = process.env.TWITTER_EMAIL;
 const password = process.env.TWITTER_PASSWORD;
 
@@ -59,15 +60,15 @@ Scenario('search account', ({ I }) => {
     I.see("No results");
     I.clearField("Search query");
     I.click("Clear");
-    I.fillField("Search query", uname);
+    I.fillField("Search query", fname);
     I.wait(2);
-    I.click("@"+uname);
+    I.click("@"+fname);
     I.wait(2);
-    I.see("@"+uname);
+    I.see("@"+fname);
 });
 
 Scenario('follow', ({ I }) => {
-    I.see("@"+uname);
+    I.see("@"+fname);
     I.click("Follow");
     I.wait(2);
     I.see("Following");
