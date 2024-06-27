@@ -22,11 +22,10 @@ Scenario('open profile',  ({ I }) => {
     
     // captcha
     pause();
-
     // kalau ada unusual activity
-    I.focus("input[name='text']");
-    I.type(uname, 200);
-    I.click("Next");
+    // I.focus("input[name='text']");
+    // I.type(uname, 200);
+    // I.click("Next");
 
     I.focus("input[name='password']");
     I.type(password, 200);
@@ -38,17 +37,18 @@ Scenario('open profile',  ({ I }) => {
     I.click("Profile");
     I.wait(2);
     I.see("@"+uname);
+    I.wait(2);
 });
 
 Scenario('change profile picture', async ({ I }) => {
     I.click("Edit profile");
     I.wait(2);
+    pause(); // in case of reload
     I.see("Save")
     I.click("Add avatar photo");
     await makeFakeAvatar("output/downloads/avatar.jpg");
-    I.attachFile("div.css-175oi2r.r-1777fci.r-1udh08x.r-kemksi.r-1xc7w19.r-1phboty.r-d045u9.r-16h92eq.r-1uvakcn.r-1re40zr.r-1xce0ei.r-sdzlij input[type='file']", "output/downloads/avatar.jpg");
+    I.attachFile(locate("input").withAttr({'type':'file'}).after(locate("button").withAttr({'aria-label':'Add avatar photo'})), "output/downloads/avatar.jpg");
     I.click("Apply");
     I.wait(2);
-    
-    I.click("Next");
+    I.click("Save");
 });

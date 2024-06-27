@@ -1,36 +1,76 @@
+import * as dotenv from 'dotenv';
 import { makeFakeTextFile } from './data-faker';
 import * as fs from 'fs';
 
+dotenv.config();
+const email = process.env.TWITTER_EMAIL;
+const uname = process.env.TWITTER_USERNAME;
+const password = process.env.TWITTER_PASSWORD;
+
 Feature('twitter_homepage');
 
-Scenario('like',  ({ I }) => {
+Scenario('open home',  ({ I }) => {
     I.amOnPage("https://x.com/");
-    I.click("article[role='article'] div[aria-labelledby='id__jk8mh66bul id__an2rh9aaxt'] button[data-testid='like']");
-    I.scrollPageToBottom();
-    I.click("article[role='article'] div[aria-labelledby='id__0hxs9vuy15pj id__6urakpblazr'] button[data-testid='like']");
-    I.scrollPageToBottom();
-    I.click("article[role='article'] div[aria-labelledby='id__n3vytiw198 id__hx5t8llmz2q'] button[data-testid='like']");
-    // bisa diteruskan
+    I.click("Sign in");
+    I.wait(10);
+    I.wait(2);
+
+    I.focus("input[name='text']");
+    I.type(email, 200);
+    I.wait(2);
+    I.click("Next");
+    I.wait(2);
+    
+    // captcha
+    pause();
+    // kalau ada unusual activity
+    // I.focus("input[name='text']");
+    // I.type(uname, 200);
+    // I.click("Next");
+
+    I.focus("input[name='password']");
+    I.type(password, 200);
+    I.wait(2);
+    I.click("Log in");
+    I.wait(10);
+    I.see("For you");
+
+});
+
+Scenario('like',  ({ I }) => {
+    I.executeScript(() => {document.querySelectorAll("[data-testid='like']").forEach((e) => {
+        if (e instanceof HTMLElement) {
+            e.click();
+        }})
+    });
+    // belum ke register
 
 });
 
 Scenario('comment', async ({ I }) => {
-    I.scrollTo("article[role='article'] div[aria-labelledby='id__4b7gflut9gk id__xwoeg2oqedd'] button[data-testid='reply']");
-    I.click("article[role='article'] div[aria-labelledby='id__4b7gflut9gk id__xwoeg2oqedd'] button[data-testid='reply']");
+    I.executeScript(() => {
+        var e = document.querySelector("[data-testid='reply']");
+        if (e instanceof HTMLElement) {
+            e.click();
+        }
+    });
+    I.wait(2);
     I.fillField("Post text", "Aaaaaaaaaa");
-    pause();
     await makeFakeTextFile("output/downloads/text.txt");
     I.fillField("Post text", fs.readFileSync("output/downloads/text.txt"));
-    pause();
 
     I.click("Close");
     I.click("Discard");
+    I.wait(2);
 });
 
 Scenario('repost',  ({ I }) => {
-    I.scrollTo("article[role='article'] div[aria-labelledby='id__cpf4z5dj0jk id__myay92uaevt'] button[data-testid='reply']");
-    I.click("article[role='article'] div[aria-labelledby='id__cpf4z5dj0jk id__myay92uaevt'] button[data-testid='reply']");
-    I.click("Repost");
-    pause();
+    I.executeScript(() => {
+        var e = document.querySelector("[data-testid='retweet']");
+        if (e instanceof HTMLElement) {
+            e.click();
+        }
+    });
+    I.click("Repost"); // belum ke register
 
 });
