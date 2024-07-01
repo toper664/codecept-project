@@ -1,10 +1,10 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config();
-const fname = process.env.FACEBOOK_FIRSTNAME;
-const lname = process.env.FACEBOOK_LASTNAME;
-const email = process.env.FACEBOOK_EMAIL;
-const password = process.env.FACEBOOK_PASSWORD;
+dotenv.config({ path:"./facebook/.env" });
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
+const fname = process.env.FIRSTNAME;
+const lname = process.env.LASTNAME;
 
 Feature('facebook_register');
 

@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config();
-const email = process.env.FACEBOOK_LOGIN_EMAIL;
-const password = process.env.FACEBOOK_LOGIN_PASSWORD;
+dotenv.config({ path:"./facebook/.env" });
+const email = process.env.LOGIN_EMAIL;
+const password = process.env.LOGIN_PASSWORD;
 
 Feature('facebook_login');
 

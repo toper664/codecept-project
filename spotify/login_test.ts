@@ -1,8 +1,8 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config();
-const username = process.env.SPOTIFY_LOGIN_EMAIL;
-const password = process.env.SPOTIFY_PASSWORD;
+dotenv.config({ path:"./spotify/.env" });
+const username = process.env.LOGIN_EMAIL;
+const password = process.env.PASSWORD;
 
 Feature('spotify_login');
 
