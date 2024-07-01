@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config();
-const uname = process.env.TWITTER_NAME;
-const email = process.env.TWITTER_EMAIL;
-const password = process.env.TWITTER_PASSWORD;
+dotenv.config({ path: "./twitter/.env" });
+const uname = process.env.NAME;
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
 
 Feature('twitter_register');
 

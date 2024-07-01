@@ -1,39 +1,16 @@
 import * as dotenv from 'dotenv';
 import { makeFakeAvatar } from './data-faker';
 
-dotenv.config();
-const email = process.env.TWITTER_EMAIL;
-const uname = process.env.TWITTER_USERNAME;
-const password = process.env.TWITTER_PASSWORD;
+dotenv.config({ path: "./twitter/.env" });
+const uname = process.env.USERNAME;
 
 Feature('twitter_profile');
 
+BeforeSuite(({ login }) => {
+    login('tester'); // login using tester session
+ });
+
 Scenario('open profile',  ({ I }) => {
-    I.amOnPage("https://x.com/");
-    I.click("Sign in");
-    I.wait(10);
-    I.wait(2);
-
-    I.focus("input[name='text']");
-    I.type(email, 200);
-    I.wait(2);
-    I.click("Next");
-    I.wait(2);
-    
-    // captcha
-    pause();
-    // kalau ada unusual activity
-    // I.focus("input[name='text']");
-    // I.type(uname, 200);
-    // I.click("Next");
-
-    I.focus("input[name='password']");
-    I.type(password, 200);
-    I.wait(2);
-    I.click("Log in");
-    I.wait(10);
-    I.see("For you");
-
     I.click("Profile");
     I.wait(2);
     I.see("@"+uname);

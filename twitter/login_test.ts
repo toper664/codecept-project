@@ -1,9 +1,9 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config();
-const email = process.env.TWITTER_EMAIL;
-const uname = process.env.TWITTER_USERNAME;
-const password = process.env.TWITTER_PASSWORD;
+dotenv.config({ path: "./twitter/.env" });
+const email = process.env.EMAIL;
+const uname = process.env.USERNAME;
+const password = process.env.PASSWORD;
 
 Feature('twitter_login');
 
@@ -30,10 +30,11 @@ Scenario('check credentials',  ({ I }) => {
     I.click("Next");
     I.wait(2);
     
+    pause();
     // kalau ada unusual activity
-    I.focus("input[name='text']");
-    I.type(uname, 200);
-    I.click("Next");
+    // I.focus("input[name='text']");
+    // I.type(uname, 200);
+    // I.click("Next");
 
     I.focus("input[name='password']");
     I.type(password, 200);
