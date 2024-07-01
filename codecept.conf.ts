@@ -11,17 +11,35 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://open.spotify.com/',
+      url: 'https://x.com/',
       show: true,
       restart: false,
+      keepCookies: true,
       waitForAction: 500,
       waitForNavigation: "networkidle0",
       windowSize: '1200x900',
       chrome: {
-        args: [ '--no-sandbox', '--window-size=1200,900' ]
+        args: [ '--no-sandbox', '--window-size=1200,900', '--use-fake-ui-for-media-stream' ]
       }
     },
     FileSystem: {},
+  },
+  plugins: {
+    autoLogin: {
+      enabled: true,
+      saveToFile: true,
+      inject: 'login',
+      users: {
+        tester: {
+          login: (I: CodeceptJS.I) => I.loginTwitter(),
+          check: (I: CodeceptJS.I) => {
+            I.seeElement({css: "[data-testid='AppTabBar_Home_Link']"});
+          },
+          fetch: () => {}, // empty function
+          restore: () => {}, // empty funciton
+        }
+      }
+    }
   },
   include: {
     I: './steps_file'
