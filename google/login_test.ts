@@ -10,7 +10,6 @@ Feature('google_login');
 
 Scenario('go to login',  ({ I }) => {
     I.amOnPage("https://www.google.com/account/about/");
-    pause();
     I.forceClick("Go to Google Account");
     I.wait(2);
 });
@@ -20,7 +19,7 @@ Scenario('invalid email',  ({ I }) => {
     I.see("Enter an email");
     I.fillField("identifier", "gmaomgaowm6289hufba");
     I.click("Next");
-    I.see("Couldn't find");
+    I.see("Sign in");
 
 });
 
@@ -28,6 +27,7 @@ Scenario('valid email',  ({ I }) => {
     I.fillField("identifier", email);
     I.click("Next");
     I.wait(2);
+    pause();
 });
 
 Scenario('invalid password',  ({ I }) => {

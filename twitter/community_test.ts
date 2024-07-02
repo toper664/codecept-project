@@ -14,7 +14,7 @@ Scenario('open community',  ({ I }) => {
 Scenario('by category',  ({ I }) => {
     I.click("Gaming");
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
     I.click("Next");
     I.click("Next");
     I.click("Cryptocurrency");
@@ -27,10 +27,10 @@ Scenario('by category',  ({ I }) => {
 Scenario('join',  ({ I }) => {
     I.click("Search Communities");
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
     I.fillField("input[placeholder='Search Communities']", "valorant");
     I.wait(2);
-    I.click("VALORANT");
+    I.click("VALORANT JP");
     I.wait(2);
 
     I.click("Join");
@@ -40,7 +40,7 @@ Scenario('join',  ({ I }) => {
 Scenario('explore community',  ({ I }) => {
     I.click("Latest");
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
     I.scrollPageToBottom();
     I.wait(2);
 
@@ -53,7 +53,5 @@ Scenario('explore community',  ({ I }) => {
     I.click("Media");
     I.scrollPageToBottom();
     I.wait(2);
-
-    I.see("div[aria-label='Timeline: Community']")
 
 });

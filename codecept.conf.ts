@@ -1,7 +1,12 @@
+import * as dotenv from 'dotenv';
+import Groq from 'groq-sdk';
 import { setHeadlessWhen, setCommonPlugins } from '@codeceptjs/configure';
+require("./heal");
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
+dotenv.config();
 setHeadlessWhen(process.env.HEADLESS);
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 // enable all common plugins https://github.com/codeceptjs/configure#setcommonplugins
 setCommonPlugins();
@@ -19,14 +24,41 @@ export const config: CodeceptJS.MainConfig = {
       waitForNavigation: "networkidle0",
       windowSize: '1200x900',
       chrome: {
-        args: [ '--no-sandbox', '--window-size=1200,900', '--use-fake-ui-for-media-stream' ]
+        args: [
+          '--no-sandbox',
+          '--window-size=1200,900',
+          '--use-fake-ui-for-media-stream'
+        ]
       }
     },
-    FileSystem: {},
+    FileSystem: {}
+  },
+  include: {
+    I: './steps_file'
+  },
+  mocha: {},
+  bootstrap: null,
+  timeout: null,
+  teardown: null,
+  hooks: [],
+  gherkin: {
+    features: './features/*.feature',
+    steps: [
+      './step_definitions/steps.ts',
+      './step_definitions/messages_steps.ts',
+      './step_definitions/community_steps.ts',
+      './step_definitions/static_steps.ts',
+    ]
   },
   plugins: {
+    screenshotOnFail: {
+      enabled: true
+    },
+    heal: {
+      enabled: true
+    },
     autoLogin: {
-      enabled: false,
+      enabled: true,
       saveToFile: true,
       inject: 'login',
       users: {
@@ -39,10 +71,39 @@ export const config: CodeceptJS.MainConfig = {
           restore: () => {}, // empty funciton
         }
       }
-    }
+    },
+    tryTo: {
+      enabled: true
+    },
+    retryFailedStep: {
+      enabled: true
+    },
+    retryTo: {
+      enabled: true
+    },
+    eachElement: {
+      enabled: true
+    },
+    pauseOnFail: {}
   },
-  include: {
-    I: './steps_file'
+  stepTimeout: 0,
+  stepTimeoutOverride: [{
+      pattern: 'wait.*',
+      timeout: 0
+    },
+    {
+      pattern: 'amOnPage',
+      timeout: 0
+    }
+  ],
+  ai: {
+    request: async (messages) => {
+      const chatCompletion = await groq.chat.completions.create({
+          messages,
+          model: "mixtral-8x7b-32768",
+      });
+      return chatCompletion.choices[0]?.message?.content || "";
+    }
   },
   name: 'codecept-project'
 }

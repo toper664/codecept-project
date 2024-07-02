@@ -20,7 +20,7 @@ Scenario('open profile',  ({ I }) => {
 Scenario('change profile picture', async ({ I }) => {
     I.click("Edit profile");
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
     I.see("Save")
     I.click("Add avatar photo");
     await makeFakeAvatar("output/downloads/avatar.jpg");

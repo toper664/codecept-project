@@ -17,14 +17,14 @@ Scenario('trending',  ({ I }) => {
         }
     });
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
     I.scrollPageToBottom();
 });
 
 Scenario('search account', ({ I }) => {
     I.clearField("Search query");
     I.click("Clear");
-    pause(); // in case of reload
+    // in case of reload --> pause();
     I.fillField("Search query", "iuayvwydiuhjan");
     I.wait(2);
     I.click('Search for "iuayvwydiuhjan"');

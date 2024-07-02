@@ -24,7 +24,7 @@ Scenario('new dm',  ({ I }) => {
     I.wait(2);
     I.fillField("input[placeholder='Search people']", fname);
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
 
     I.click("@"+fname);
     I.click("Next");
@@ -54,7 +54,7 @@ Scenario('new group',  ({ I }) => {
     I.click("@"+fname);
     I.fillField("input[placeholder='Search people']", f2name);
     I.wait(2);
-    pause(); // in case of reload
+    // in case of reload --> pause();
 
     I.click("@"+fname);
     I.click("Next");
