@@ -47,6 +47,7 @@ export const config: CodeceptJS.MainConfig = {
       './step_definitions/steps.ts',
       './step_definitions/messages_steps.ts',
       './step_definitions/community_steps.ts',
+      './step_definitions/bookmark_steps.ts',
       './step_definitions/static_steps.ts',
     ]
   },
@@ -67,10 +68,15 @@ export const config: CodeceptJS.MainConfig = {
           check: (I: CodeceptJS.I) => {
             I.seeElement({css: "[data-testid='AppTabBar_Home_Link']"});
           },
-          fetch: () => {}, // empty function
+          fetch: () => { return "fetch successful" }, // empty function
           restore: () => {}, // empty funciton
         }
       }
+    },
+    testomatio: {
+      enabled: true,
+      require: '@testomatio/reporter/lib/adapter/codecept',
+      apiKey: process.env.TESTOMATIO,
     },
     tryTo: {
       enabled: true
@@ -103,7 +109,8 @@ export const config: CodeceptJS.MainConfig = {
           model: "mixtral-8x7b-32768",
       });
       return chatCompletion.choices[0]?.message?.content || "";
-    }
+    },
+    maxTokens:100000,
   },
   name: 'codecept-project'
 }

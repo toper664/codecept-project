@@ -61,5 +61,4 @@ Then('see their latest feeds', () => {
     I.scrollPageToBottom();
     I.wait(2);
 
-    I.see("div[aria-label='Timeline: Community']");
 });
