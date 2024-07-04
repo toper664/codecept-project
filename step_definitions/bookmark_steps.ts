@@ -1,3 +1,8 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config({ path: "./twitter/.env" });
+
+const { I, login } = inject();
 
 Given('I have logged in to my account', () => {
     login('tester'); // login using tester session

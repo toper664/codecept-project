@@ -1,9 +1,6 @@
-// import * as dotenv from 'dotenv';
-// import * as fs from 'fs';
-// import { makeFakeTextFile, makeFakeAvatar } from '../twitter/data-faker';
+import * as dotenv from 'dotenv';
 
-// dotenv.config({ path: "./twitter/.env" });
-// const fname = process.env.FRIEND_USERNAME;
+dotenv.config({ path: "./twitter/.env" });
 
 const { I, login } = inject();
 

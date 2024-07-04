@@ -50,6 +50,11 @@ Then('I should see my messages sent', () => {
 });
 
 When('I try to create a new group chat room', () => {
+    I.amOnPage("https://x.com/");
+    I.click("a[aria-label='Direct Messages']");
+    I.wait(2);
+    I.see("Messages");
+    I.wait(2);
     I.click("Compose a DM");
     I.wait(2);
     I.click("Create a group");

@@ -9,7 +9,7 @@ const { I } = inject();
 
 Given('I am on Twitter login page', () => {
   I.amOnPage("https://x.com/");
-  I.click("Sign on"); // sengaja untuk heal
+  I.click("Sign in"); // sengaja untuk heal
   I.wait(10);
 });
 
