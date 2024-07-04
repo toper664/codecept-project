@@ -36,7 +36,11 @@ export const config: CodeceptJS.MainConfig = {
   include: {
     I: './steps_file'
   },
-  mocha: {},
+  mocha: {
+    "reporterOptions": {
+        "reportDir": "output"
+    }
+  },
   bootstrap: null,
   timeout: null,
   teardown: null,
