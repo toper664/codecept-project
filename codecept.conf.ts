@@ -16,7 +16,8 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://x.com/',
+      url: 'https://open.spotify.com/', // spotify
+        // 'https://x.com/', // twitter
       show: true,
       restart: false,
       keepCookies: true,
@@ -68,9 +69,11 @@ export const config: CodeceptJS.MainConfig = {
       inject: 'login',
       users: {
         tester: {
-          login: (I: CodeceptJS.I) => I.loginTwitter(),
+          login: (I: CodeceptJS.I) => I.loginSpotify(),
+                                   // I.loginTwitter(),
           check: (I: CodeceptJS.I) => {
-            I.seeElement({css: "[data-testid='AppTabBar_Home_Link']"});
+            I.seeElement({css: "[aria-label='Main']"}); // spotify
+         // I.seeElement({css: "[data-testid='AppTabBar_Home_Link']"}); // twitter
           },
           fetch: () => { return "fetch successful" }, // empty function
           restore: () => {}, // empty funciton
