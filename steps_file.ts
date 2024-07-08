@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config({ path: "./twitter/.env" });
 const twtmail = process.env.EMAIL;
 const twtpass = process.env.PASSWORD;
-dotenv.config({ path: "./spotify/.env" });
+dotenv.config({ path: "./spotify/.env", override: true });
 const spfmail = process.env.LOGIN_EMAIL;
 const spfpass = process.env.PASSWORD;
 
@@ -37,7 +37,7 @@ export = function() {
     },
 
     loginSpotify: function() {
-      this.amOnPage('/');
+      this.amOnPage('');
       this.click('Log in');
       this.wait(2);
       // manual override for english
