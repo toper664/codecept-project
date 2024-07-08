@@ -37,7 +37,7 @@ export = function() {
     },
 
     loginSpotify: function() {
-      this.amOnPage('/');
+      this.amOnPage('');
       this.click('Log in');
       this.wait(2);
       // manual override for english
