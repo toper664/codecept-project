@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { shortWait, longWait } from './global';
 
 dotenv.config({ path: "./twitter/.env" });
 const twtmail = process.env.LOGIN_EMAIL;
