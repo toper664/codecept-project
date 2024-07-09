@@ -4,21 +4,17 @@ dotenv.config({ path: "./twitter/.env" });
 const email = process.env.EMAIL;
 const pass = process.env.PASSWORD;
 
-const { I } = inject();
-// Add in your custom step files
-
 Given('I am on Twitter login page', () => {
   I.amOnPage("https://x.com/");
   I.click("Sign in"); // sengaja untuk heal
-  I.wait(10);
+  I.wait(longWait);
 });
 
 When('I try to enter my email and password', () => {
-  I.focus("input[name='text']");
-  I.type(email, 200);
-  I.wait(2);
+  I.fillField("input[name='text']", email);
+  I.wait(shortWait);
   I.click("Next");
-  I.wait(2);
+  I.wait(shortWait);
   
   pause();
   // kalau ada unusual activity
@@ -26,14 +22,13 @@ When('I try to enter my email and password', () => {
   // I.type(uname, 200);
   // I.click("Next");
 
-  I.focus("input[name='password']");
-  I.type(pass, 200);
-  I.wait(2);
+  I.fillField("input[name='password']", secret(pass));
+  I.wait(shortWait);
 });
 
 Then('I should be able to login', () => {
   I.click("Log in");
-  I.wait(10);
+  I.wait(longWait);
 });
 
 Then('see Twitter dashboard with my account', () => {

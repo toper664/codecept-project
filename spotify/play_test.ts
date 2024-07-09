@@ -1,7 +1,7 @@
 Feature('spotify_play');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('spf'); // login using spf session
 });
 
 Scenario('play song', ({ I }) => {
@@ -11,14 +11,14 @@ Scenario('play song', ({ I }) => {
             e.click();
         }
     });
-    I.wait(2);
+    I.wait(shortWait);
     I.click("button[data-testid='play-button']");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('play show', ({ I }) => {
     I.click("button[data-testid='top-bar-back-button']");
-    I.wait(2);
+    I.wait(shortWait);
     I.scrollPageToBottom();
     I.executeScript(() => {
         var e = document.querySelector("[role='button']");
@@ -26,7 +26,7 @@ Scenario('play show', ({ I }) => {
             e.click();
         }
     });
-    I.wait(2);
+    I.wait(shortWait);
     I.click("button[data-testid='play-button']");
-    I.wait(2);
+    I.wait(shortWait);
 });

@@ -4,7 +4,7 @@ import * as fs from 'fs';
 Feature('twitter_homepage');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('twt'); // login using twt session
  });
 
 Scenario('like',  ({ I }) => {
@@ -13,7 +13,6 @@ Scenario('like',  ({ I }) => {
             e.click();
         }})
     });
-    // belum ke register
 
 });
 
@@ -24,14 +23,14 @@ Scenario('comment', async ({ I }) => {
             e.click();
         }
     });
-    I.wait(2);
+    I.wait(shortWait);
     I.fillField("Post text", "Aaaaaaaaaa");
     await makeFakeTextFile("output/downloads/text.txt");
     I.fillField("Post text", fs.readFileSync("output/downloads/text.txt"));
 
     I.click("Close");
     I.click("Discard");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('repost',  ({ I }) => {
@@ -41,6 +40,6 @@ Scenario('repost',  ({ I }) => {
             e.click();
         }
     });
-    I.click("Repost"); // belum ke register
+    I.click("Repost");
 
 });

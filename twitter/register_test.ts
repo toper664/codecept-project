@@ -10,7 +10,7 @@ Feature('twitter_register');
 Scenario('go to register',  ({ I }) => {
     I.amOnPage("https://x.com");
     I.click("Create account");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('invalid name',  ({ I }) => {
@@ -22,7 +22,7 @@ Scenario('invalid name',  ({ I }) => {
 });
 
 Scenario('invalid email',  ({ I }) => {
-    I.fillField("email", "aaaa@2.ddd");
+    I.fillField("email", "aaaa@shortWait.ddd");
     I.click("Next");
     I.see("This email is invalid.");
 
@@ -54,7 +54,7 @@ Scenario('finalisasi form',  ({ I }) => {
     I.click("Next");
     pause(); // pengerjaan captcha dan verification code
     I.fillField("password", password);
-    I.wait(2);
+    I.wait(shortWait);
     I.click("Sign up");
-    I.wait(10);
+    I.wait(longWait);
 });

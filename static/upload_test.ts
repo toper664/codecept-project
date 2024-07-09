@@ -17,8 +17,8 @@ Feature('upload')
 Scenario('upload file', ({ I }) => {
     I.amOnPage('https://jumpshare.com/file-sharing/txt');
     I.attachFile('#guest-file-upload', 'test.txt');
-    I.waitForVisible('.file_link', 20);
+    I.waitForVisible('.file_link', longWait);
     I.click('Share Your Code');
-    I.wait(5);
+    I.wait(shortWait);
     I.see('Analytics');
 })

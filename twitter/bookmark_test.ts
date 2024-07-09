@@ -1,7 +1,7 @@
 Feature('twitter_bookmark');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('twt'); // login using twt session
  });
 
 Scenario('bookmark post',  ({ I }) => {
@@ -11,17 +11,16 @@ Scenario('bookmark post',  ({ I }) => {
             e.click();
         }
     });
-    // belum ke register
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Added to your Bookmarks");
 
 });
 
 Scenario('see bookmark',  ({ I }) => {
     I.click("a[aria-label='Bookmarks']");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Bookmarks");
-    I.wait(2);
+    I.wait(shortWait);
 
 });
 
@@ -32,8 +31,7 @@ Scenario('remove bookmark',  ({ I }) => {
             e.click();
         }
     });
-    // belum ke register
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Removed from your Bookmarks");
 
 });

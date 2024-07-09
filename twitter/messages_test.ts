@@ -9,26 +9,25 @@ const f2name = process.env.FRIEND2_USERNAME;
 Feature('twitter_messages');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('twt'); // login using twt session
  });
 
 Scenario('open messages',  ({ I }) => {
     I.click("a[aria-label='Direct Messages']");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Messages");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('new dm',  ({ I }) => {
     I.click("New message");
-    I.wait(2);
+    I.wait(shortWait);
     I.fillField("input[placeholder='Search people']", fname);
-    I.wait(2);
-    // in case of reload --> pause();
+    I.wait(shortWait);
 
     I.click("@"+fname);
     I.click("Next");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Start a new message");
 });
 
@@ -39,26 +38,25 @@ Scenario('chat', async ({ I }) => {
     await makeFakeAvatar("output/downloads/avatar.jpg");
     I.click("Add photos or video");
     I.attachFile(locate("input").withAttr({'type':'file'}).after(locate("button").withAttr({'aria-label':'Add photos or video'})), "output/downloads/avatar.jpg");
-    I.wait(2);
+    I.wait(shortWait);
 
     I.click("Send");
-    I.wait(2);
+    I.wait(shortWait);
 
     I.see("Sent");
 });
 
 Scenario('new group',  ({ I }) => {
     I.click("Compose a DM");
-    I.wait(2);
+    I.wait(shortWait);
     I.click("Create a group");
     I.click("@"+fname);
     I.fillField("input[placeholder='Search people']", f2name);
-    I.wait(2);
-    // in case of reload --> pause();
-
+    I.wait(shortWait);
+    
     I.click("@"+fname);
     I.click("Next");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Start a new message");
 
 });

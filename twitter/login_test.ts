@@ -10,7 +10,7 @@ Feature('twitter_login');
 Scenario('go to login',  ({ I }) => {
     I.amOnPage("https://x.com/");
     I.click("Sign in");
-    I.wait(10);
+    I.wait(longWait);
 });
 
 Scenario('check credentials',  ({ I }) => {
@@ -18,15 +18,14 @@ Scenario('check credentials',  ({ I }) => {
 
     I.focus("input[name='text']");
     I.type("2341243", 200);
-    I.wait(2);
+    I.wait(shortWait);
     I.click("Next");
 
-    I.wait(2);
-    I.focus("input[name='text']");
-    I.type(email, 200);
-    I.wait(2);
+    I.wait(shortWait);
+    I.fillField("input[name='text']", email);
+    I.wait(shortWait);
     I.click("Next");
-    I.wait(2);
+    I.wait(shortWait);
     
     pause();
     // kalau ada unusual activity
@@ -34,11 +33,10 @@ Scenario('check credentials',  ({ I }) => {
     // I.type(uname, 200);
     // I.click("Next");
 
-    I.focus("input[name='password']");
-    I.type(password, 200);
-    I.wait(2);
+    I.fillField("input[name='password']", secret(password));
+    I.wait(shortWait);
     I.click("Log in");
-    I.wait(10);
+    I.wait(longWait);
     I.see("For you");
 });
 
@@ -46,6 +44,6 @@ Scenario('check credentials',  ({ I }) => {
 //     pause();
 //     I.click("button[aria-label='Account menu']");
 //     I.click("Log out @"+uname);
-//     I.wait(10);
+//     I.wait(longWait);
 //     I.see("Sign in");
 // });

@@ -11,7 +11,7 @@ Feature('google_register');
 Scenario('go to register',  ({ I }) => {
     I.amOnPage("https://www.google.com/account/about/");
     I.forceClick("Create an account");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('invalid name',  ({ I }) => {
@@ -71,7 +71,7 @@ Scenario('select email',  ({ I }) => {
 Scenario('invalid password',  ({ I }) => {
     I.click("Next");
     I.see("Enter a password");
-    I.fillField("Passwd", password);
+    I.fillField("Passwd", secret(password));
     I.click("Next");
     I.see("Confirm your password");
     I.fillField("PasswdAgain", "mangeak");
@@ -81,9 +81,9 @@ Scenario('invalid password',  ({ I }) => {
 });
 
 Scenario('valid password',  ({ I }) => {
-    I.fillField("PasswdAgain", password);
+    I.fillField("PasswdAgain", secret(password));
     I.click("Next");
-    I.wait(10);
+    I.wait(longWait);
 });
 
 Scenario('finalisasi form',  ({ I }) => {

@@ -1,14 +1,14 @@
 Feature('spotify_search');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('spf'); // login using spf session
 });
 
 Scenario('search', ({ I }) => {
     I.click("a[aria-label='Search']");
-    I.wait(2);
+    I.wait(shortWait);
     I.fillField("input[data-testid='search-input']", "persona 3");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('artists', ({ I }) => {
@@ -18,17 +18,17 @@ Scenario('artists', ({ I }) => {
             e.click();
         }
     });
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('category', ({ I }) => {
     I.click("a[aria-label='Search']");
-    I.wait(2);
+    I.wait(shortWait);
     I.executeScript(() => {
         var e = document.querySelector("[class='CqCtb3wr4SK8AiZwxeH0']");
         if (e instanceof HTMLElement) {
             e.click();
         }
     });
-    I.wait(2);
+    I.wait(shortWait);
 });

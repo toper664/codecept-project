@@ -7,21 +7,21 @@ const dname = process.env.USERNAME;
 
 Feature('spotify_register');
 
-Scenario('go to register', async ({ I }) => {
+Scenario('go to register',  ({ I }) => {
     // tes 0a: buka halaman register
     I.amOnPage('/');
     I.click('Sign up');
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 // Scenario('ke login', async ({ I }) => {
 //     // tes 0: buka login dari register
 //     I.click("Log in here");
-//     I.wait(2);
+//     I.wait(shortWait);
 //     I.switchToPreviousTab();
 // });
 
-Scenario('invalid email', async ({ I }) => {
+Scenario('invalid email',  ({ I }) => {
     // tes 1: salah ketika register
     I.click("Next");
 
@@ -42,14 +42,14 @@ Scenario('invalid email', async ({ I }) => {
     I.see("invalid");
 });
 
-Scenario('valid email', async ({ I }) => {
+Scenario('valid email',  ({ I }) => {
     // tes 2: benar ketika register --> diminta password
     I.fillField("username", username);
     I.click("Next");
     I.dontSee("invalid");
 });
 
-Scenario('invalid password', async ({ I }) => {
+Scenario('invalid password',  ({ I }) => {
     // tes 3: password tidak sesuai
     I.click("Next");
 
@@ -74,14 +74,14 @@ Scenario('invalid password', async ({ I }) => {
     I.see("Create");
 });
 
-Scenario('valid password', async ({ I }) => {
+Scenario('valid password',  ({ I }) => {
     // tes 4: password sesuai --> diminta data diri
-    I.fillField("new-password", password);
+    I.fillField("new-password", secret(password));
     I.click("Next");
     I.dontSee("Create");
 });
 
-Scenario('fill biodata', async ({ I }) => {
+Scenario('fill biodata',  ({ I }) => {
     // tes 5: mengisi biodata
     I.click("Next");
 
@@ -144,7 +144,7 @@ Scenario('fill biodata', async ({ I }) => {
     I.dontSee("about yourself");
 });
 
-Scenario('check TnC', async ({ I }) => {
+Scenario('check TnC',  ({ I }) => {
     // tes 6: memilih dan mencabut pilihan Terms and Conditions
     I.checkOption("marketing-opt-in");
     I.checkOption("privacy");
@@ -154,7 +154,7 @@ Scenario('check TnC', async ({ I }) => {
     I.dontSee("error");
 });
 
-Scenario('logged in', async ({ I }) => {
+Scenario('logged in',  ({ I }) => {
     // tes 7: akun berhasil dibuat dan masuk ke homepage
     I.click("Sign up");
     I.dontSee("Sign up");
