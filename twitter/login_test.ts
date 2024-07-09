@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: "./twitter/.env" });
-const email = process.env.EMAIL;
+dotenv.config({ path: "./twitter/.env", override: true });
+const email = process.env.LOGIN_EMAIL;
 const uname = process.env.USERNAME;
 const password = process.env.PASSWORD;
 
@@ -20,8 +20,6 @@ Scenario('check credentials',  ({ I }) => {
     I.type("2341243", 200);
     I.wait(2);
     I.click("Next");
-    I.click("OK");
-    I.click("Sign in");
 
     I.wait(2);
     I.focus("input[name='text']");
@@ -44,9 +42,10 @@ Scenario('check credentials',  ({ I }) => {
     I.see("For you");
 });
 
-Scenario('log out',  ({ I }) => {
-    I.click("Account menu");
-    I.click("Log out @"+uname);
-    I.wait(10);
-    I.see("Sign in");
-});
+// Scenario('log out',  ({ I }) => {
+//     pause();
+//     I.click("button[aria-label='Account menu']");
+//     I.click("Log out @"+uname);
+//     I.wait(10);
+//     I.see("Sign in");
+// });

@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import { makeFakeAvatar } from './data-faker';
 
-dotenv.config({ path: "./twitter/.env" });
+dotenv.config({ path: "./twitter/.env", override: true });
 const uname = process.env.USERNAME;
 
 Feature('twitter_profile');

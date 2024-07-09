@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 
 dotenv.config({ path: "./twitter/.env" });
-const twtmail = process.env.EMAIL;
+const twtmail = process.env.LOGIN_EMAIL;
 const twtpass = process.env.PASSWORD;
 dotenv.config({ path: "./spotify/.env", override: true });
 const spfmail = process.env.LOGIN_EMAIL;

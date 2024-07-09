@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config({ path: "./twitter/.env" });
 const uname = process.env.NAME;
-const email = process.env.EMAIL;
+const email = process.env.REGISTER_EMAIL;
 const password = process.env.PASSWORD;
 
 Feature('twitter_register');
@@ -51,8 +51,8 @@ Scenario('select DoB',  ({ I }) => {
 });
 
 Scenario('finalisasi form',  ({ I }) => {
-    pause(); // pengerjaan captcha dan verification code
     I.click("Next");
+    pause(); // pengerjaan captcha dan verification code
     I.fillField("password", password);
     I.wait(2);
     I.click("Sign up");
