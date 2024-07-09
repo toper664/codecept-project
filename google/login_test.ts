@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { shortWait, longWait } from '../global';
 
 dotenv.config({ path: "./google/.env" });
 const email = process.env.EMAIL;
@@ -11,7 +12,7 @@ Feature('google_login');
 Scenario('go to login',  ({ I }) => {
     I.amOnPage("https://www.google.com/account/about/");
     I.forceClick("Go to Google Account");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('invalid email',  ({ I }) => {
@@ -26,7 +27,7 @@ Scenario('invalid email',  ({ I }) => {
 Scenario('valid email',  ({ I }) => {
     I.fillField("identifier", email);
     I.click("Next");
-    I.wait(2);
+    I.wait(shortWait);
     pause();
 });
 
@@ -35,14 +36,14 @@ Scenario('invalid password',  ({ I }) => {
     I.see("Enter a password");
     I.fillField("Passwd", "mangeak");
     I.click("Next");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Wrong password");
 
 });
 
 Scenario('valid password',  ({ I }) => {
-    I.fillField("Passwd", password);
+    I.fillField("Passwd", secret(password));
     I.click("Next");
-    I.wait(10);
+    I.wait(longWait);
     I.see("Welcome, "+fname+" "+lname);
 });

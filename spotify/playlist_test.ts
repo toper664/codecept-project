@@ -1,11 +1,13 @@
+import { shortWait } from "../global";
+
 Feature('spotify_playlist');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('spf'); // login using spf session
 });
 
 Scenario('add playlist', ({ I }) => {
-    I.wait(2);
+    I.wait(shortWait);
     I.seeElement("button[aria-label='Create playlist or folder']");
     I.click("button[aria-label='Create playlist or folder']");
     I.click("Create a new playlist");
@@ -15,7 +17,7 @@ Scenario('add playlist', ({ I }) => {
 
 Scenario('add song', ({ I }) => {
     I.fillField("input[placeholder='Search for songs or episodes']", "persona 3");
-    I.wait(2);
+    I.wait(shortWait);
     I.executeScript(() => {document.querySelectorAll("[data-testid='add-to-playlist-button']").forEach((e) => {
         if (e instanceof HTMLElement) {
             e.click();
@@ -26,7 +28,7 @@ Scenario('add song', ({ I }) => {
 });
 
 Scenario('add folder', ({ I }) => {
-    I.wait(2);
+    I.wait(shortWait);
     I.seeElement("button[aria-label='Create playlist or folder']");
     I.click("button[aria-label='Create playlist or folder']");
     I.click("Create a playlist folder");
@@ -38,7 +40,7 @@ Scenario('playlist to folder', ({ I }) => {
     I.rightClick(locate('div').withAttr({role:'button'}).inside(locate('ul').withAttr({role:'list', 'aria-label':'Your Library'})).last());
     I.click(locate('button').withAttr({role:'menuitem'}).inside(locate('div').withAttr({'data-testid':'context-menu'})).withDescendant(locate('span').withText('Move to folder')));
     I.click(locate('button').withAttr({role:'menuitem'}).withChild(locate('span').withText('New Folder').inside(locate('ul').withAttr({role:'menu', 'data-depth':'1'}))));
-    I.wait(2);
+    I.wait(shortWait);
     // I.dontSee('My Playlist #1');
 });
 
@@ -47,16 +49,16 @@ Scenario('playlist out', ({ I }) => {
     I.rightClick(locate('div').withAttr({role:'button'}).inside(locate('ul').withAttr({role:'list', 'aria-label':'Your Library'})).first());
     I.click(locate('button').withAttr({role:'menuitem'}).inside(locate('div').withAttr({'data-testid':'context-menu'})).withDescendant(locate('span').withText('Move to folder')));
     I.click(locate('button').withAttr({role:'menuitem'}).withChild(locate('span').withText('Remove from folders').inside(locate('ul').withAttr({role:'menu', 'data-depth':'1'}))));
-    I.wait(2);
+    I.wait(shortWait);
     I.see('My Playlist #1');
 });
 
 Scenario('remove folder', ({ I }) => {
-    I.wait(2);
+    I.wait(shortWait);
     I.click(locate("button").withAttr({'aria-label': "Go back", 'data-encore-id': "buttonTertiary"}).after(locate("button").withAttr({'aria-label': "Collapse Your Library"})));
     I.rightClick(locate('div').withAttr({role:'button'}).inside(locate('ul').withAttr({role:'list', 'aria-label':'Your Library'})).first());
     I.click(locate("button").withAttr({role: 'menuitem'}).withChild(locate("span").withText("Delete")).inside(locate("ul").withAttr({role: 'menu'})));
-    I.wait(2);
+    I.wait(shortWait);
     I.click("Delete");
 });
 

@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { shortWait, longWait } from '../global';
 
 dotenv.config({ path:"./facebook/.env" });
 const email = process.env.EMAIL;
@@ -11,7 +12,7 @@ Feature('facebook_register');
 Scenario('go to register',  ({ I }) => {
     I.amOnPage("https://id-id.facebook.com/r.php");
     // I.click("Buat akun baru");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('fill name',  ({ I }) => {
@@ -61,7 +62,7 @@ Scenario('fill password',  ({ I }) => {
     I.fillField("reg_passwd__", "aaa1232131231");
     I.click("Daftar");
     I.dontSee("Masukkan kombinasi");
-    I.fillField("reg_passwd__", password);
+    I.fillField("reg_passwd__", secret(password));
 });
 
 Scenario('select DoB',  ({ I }) => {
@@ -85,6 +86,6 @@ Scenario('finalisasi form',  ({ I }) => {
     I.see("Harap pilih jenis kelamin.");
     I.checkOption("Perempuan");
     I.click("Daftar");
-    I.wait(20);
+    I.wait(longWait);
     I.dontSee("Buat Akun Baru");
 });

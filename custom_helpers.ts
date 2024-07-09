@@ -5,27 +5,15 @@ import Helper from '@codeceptjs/helper';
 // const email = process.env.TWITTER_EMAIL;
 // const password = process.env.TWITTER_PASSWORD;
 
-class TwitterSetup extends Helper {
-
-  // before/after hooks
-  /**
-   * @protected
-   */
-  _init() {
-
-  }
-
-  // /**
-  //  * @protected
-  //  */
-  // _finishTest() {
-  //   // remove if not used
-  // }
+class CustomHelper extends Helper {
 
   // add custom methods here
   // If you need to access other helpers
   // use: this.helpers['helperName']
-
+  async getAllElements(locator:string) {
+    const allElems = await document.querySelectorAll(locator);
+    return allElems;
+  }
 }
 
-export = TwitterSetup;
+export = CustomHelper;

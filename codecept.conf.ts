@@ -16,8 +16,9 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://x.com/', // twitter
+      url: 'https://six.itb.ac.id/', // six
         // 'https://open.spotify.com/', // spotify
+        // 'https://x.com/', //twitter
       show: true,
       restart: false,
       keepCookies: true,
@@ -68,12 +69,26 @@ export const config: CodeceptJS.MainConfig = {
       saveToFile: true,
       inject: 'login',
       users: {
-        tester: {
+        twt: {
           login: (I: CodeceptJS.I) => I.loginTwitter(),
-                                   // I.loginSpotify(),
           check: (I: CodeceptJS.I) => {
-         // I.seeElement({css: "[aria-label='Main']"}); // spotify
-            I.seeElement({css: "[data-testid='AppTabBar_Home_Link']"}); // twitter
+            I.seeElement({css: "[data-testid='AppTabBar_Home_Link']"});
+          },
+          fetch: () => { return "fetch successful" }, // empty function
+          restore: () => {}, // empty funciton
+        },
+        spf: {
+          login: (I: CodeceptJS.I) => I.loginSpotify(),
+          check: (I: CodeceptJS.I) => {
+            I.seeElement({css: "[aria-label='Main']"});
+          },
+          fetch: () => { return "fetch successful" }, // empty function
+          restore: () => {}, // empty funciton
+        },
+        six: {
+          login: (I: CodeceptJS.I) => I.loginSix(),
+          check: (I: CodeceptJS.I) => {
+            I.seeElement({css: "[title='Home']"});
           },
           fetch: () => { return "fetch successful" }, // empty function
           restore: () => {}, // empty funciton

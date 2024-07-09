@@ -1,11 +1,10 @@
 import * as dotenv from 'dotenv';
+import { login, I, shortWait } from '../global';
 
 dotenv.config({ path: "./twitter/.env" });
 
-const { I, login } = inject();
-
 Given('I have logged in to my account', () => {
-    login('tester'); // login using tester session
+    login('twt'); // login using twt session
 });
 
 Given('I am on Twitter home page', () => {
@@ -15,16 +14,16 @@ Given('I am on Twitter home page', () => {
             e.click();
         }
     });
-    // belum ke register
-    I.wait(2);
+    
+    I.wait(shortWait);
     I.see("Added to your Bookmarks");
 });
 
 When('I try to check bookmarks', () => {
     I.click("a[aria-label='Bookmarks']");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Bookmarks");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Then('I should be able to remove a bookmark to a post', () => {
@@ -34,7 +33,7 @@ Then('I should be able to remove a bookmark to a post', () => {
             e.click();
         }
     });
-    // belum ke register
-    I.wait(2);
+
+    I.wait(shortWait);
     I.see("Removed from your Bookmarks");
 });

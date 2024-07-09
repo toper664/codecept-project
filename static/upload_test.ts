@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import * as fs from 'fs';
+import { longWait, shortWait } from '../global';
 
 // Text data
 fs.writeFileSync('test.txt', "Element : " + faker.science.chemicalElement().symbol + "\nAtomic Number : " + faker.science.chemicalElement().atomicNumber);
@@ -17,8 +18,8 @@ Feature('upload')
 Scenario('upload file', ({ I }) => {
     I.amOnPage('https://jumpshare.com/file-sharing/txt');
     I.attachFile('#guest-file-upload', 'test.txt');
-    I.waitForVisible('.file_link', 20);
+    I.waitForVisible('.file_link', longWait);
     I.click('Share Your Code');
-    I.wait(5);
+    I.wait(shortWait);
     I.see('Analytics');
 })

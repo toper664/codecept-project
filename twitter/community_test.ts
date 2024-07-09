@@ -1,24 +1,26 @@
+import { shortWait } from '../global';
+
 Feature('twitter_community');
 
 BeforeSuite(({ login }) => {
-    login('tester'); // login using tester session
+    login('twt'); // login using twt session
  });
 
 Scenario('open community',  ({ I }) => {
     I.click("a[aria-label='Communities']");
-    I.wait(2);
+    I.wait(shortWait);
     I.see("Communities");
-    I.wait(2);
+    I.wait(shortWait);
 });
 
 Scenario('by category',  ({ I }) => {
     I.click("Gaming");
-    I.wait(2);
-    // in case of reload --> pause();
+    I.wait(shortWait);
+
     I.click("Next");
     I.click("Next");
     I.click("Cryptocurrency");
-    I.wait(2);
+    I.wait(shortWait);
 
     I.scrollPageToBottom();
 });
@@ -26,12 +28,11 @@ Scenario('by category',  ({ I }) => {
 
 Scenario('join',  ({ I }) => {
     I.click("Search Communities");
-    I.wait(2);
-    // in case of reload --> pause();
+    I.wait(shortWait);
     I.fillField("input[placeholder='Search Communities']", "valorant");
-    I.wait(2);
+    I.wait(shortWait);
     I.click("VALORANT JP");
-    I.wait(2);
+    I.wait(shortWait);
 
     I.click("Join");
     I.click("Close");
@@ -39,10 +40,9 @@ Scenario('join',  ({ I }) => {
 
 Scenario('explore community',  ({ I }) => {
     I.click("Latest");
-    I.wait(2);
-    // in case of reload --> pause();
+    I.wait(shortWait);
     I.scrollPageToBottom();
-    I.wait(2);
+    I.wait(shortWait);
 
     I.executeScript(() => {document.querySelectorAll("[data-testid='like']").forEach((e) => {
         if (e instanceof HTMLElement) {
@@ -52,6 +52,6 @@ Scenario('explore community',  ({ I }) => {
     I.scrollPageToTop();
     I.click("Media");
     I.scrollPageToBottom();
-    I.wait(2);
+    I.wait(shortWait);
 
 });
