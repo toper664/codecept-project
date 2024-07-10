@@ -4,7 +4,7 @@ import { setHeadlessWhen, setCommonPlugins } from '@codeceptjs/configure';
 require("./heal");
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
-dotenv.config();
+dotenv.config({ override: true });
 setHeadlessWhen(process.env.HEADLESS);
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -16,9 +16,9 @@ export const config: CodeceptJS.MainConfig = {
   output: './output',
   helpers: {
     Puppeteer: {
-      url: 'https://six.itb.ac.id/', // six
+      url: 'https://x.com/', //twitter
+        // 'https://six.itb.ac.id/', // six
         // 'https://open.spotify.com/', // spotify
-        // 'https://x.com/', //twitter
       show: true,
       restart: false,
       keepCookies: true,
