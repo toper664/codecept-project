@@ -9,7 +9,7 @@ To run the code :
     npm i
     npx codeceptjs run --steps
 ```
-    To run a certain test only, use:
+To run a certain test only, use:
 ```
     npx codeceptjs run {path to file} -- steps
 ```
@@ -25,11 +25,11 @@ Testomat.io reporting method:
 ```
     set TESTOMATIO={api key here}
 ```
-    Classic:
+Classic:
 ```
     npx check-tests@latest CodeceptJS "**/*{.,_}{test,spec,cy}.ts" --typescript
 ```
-    BDD:
+BDD:
 ```
     npx check-cucumber@latest --codeceptjs "**/*.feature" --dir features
 ```
